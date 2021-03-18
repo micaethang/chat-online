@@ -55957,6 +55957,11 @@ var app = new Vue({
         this.message = '';
       }
     }
+  },
+  mounted: function mounted() {
+    Echo["private"]('chat').listen('ChatEvent', function (e) {
+      console.log(e);
+    });
   }
 });
 
