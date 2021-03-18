@@ -55952,6 +55952,13 @@ var app = new Vue({
       color: []
     }
   },
+  watch: {
+    message: function message() {
+      Echo["private"]('chat').whisper('typing', {
+        name: this.message
+      });
+    }
+  },
   methods: {
     send: function send() {
       var _this = this;

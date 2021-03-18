@@ -41,6 +41,14 @@ const app = new Vue({
             color: []
         }
     },
+    watch: {
+        message() {
+            Echo.private('chat')
+                .whisper('typing', {
+                    name: this.message
+                });
+        }
+    },
     methods: {
         send() {
             if (this.message.length != 0) {
