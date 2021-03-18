@@ -1916,6 +1916,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['color', 'user', 'time'],
   computed: {
@@ -56602,7 +56604,8 @@ var app = new Vue({
       color: [],
       time: []
     },
-    typing: ''
+    typing: '',
+    numberOfUsers: 0
   },
   watch: {
     message: function message() {
@@ -56652,6 +56655,13 @@ var app = new Vue({
       } else {
         _this2.typing = '';
       }
+    });
+    Echo.join("chat").here(function (users) {
+      _this2.numberOfUsers = users.length;
+    }).joining(function (user) {
+      _this2.numberOfUsers += 1;
+    }).leaving(function (user) {
+      _this2.numberOfUsers -= 1;
     });
   }
 });
