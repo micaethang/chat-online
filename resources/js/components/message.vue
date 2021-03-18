@@ -1,5 +1,5 @@
 <template>
-    <li class="list-group-item">A second item</li>
+    <li class="list-group-item"><slot></slot></li>
 </template>
 
 <script>
