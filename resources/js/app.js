@@ -8,9 +8,15 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+// for auto scroll
+import Vue from 'vue'
 import VueChatScroll from 'vue-chat-scroll';
-
 Vue.use(VueChatScroll);
+
+// for notifications
+import Toaster from 'v-toaster'
+import 'v-toaster/dist/v-toaster.css'
+Vue.use(Toaster, {timeout: 5000})
 
 /**
  * The following block of code may be used to automatically register your
@@ -98,9 +104,11 @@ const app = new Vue({
             })
             .joining((user) => {
                 this.numberOfUsers += 1;
+                this.$toaster.success(user.name + ' is joined the chat room');
             })
             .leaving((user) => {
                 this.numberOfUsers -= 1;
+                this.$toaster.warning(user.name + ' is leaved the chat room');
             });
     }
 });
