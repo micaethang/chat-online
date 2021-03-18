@@ -55968,8 +55968,10 @@ var app = new Vue({
     }
   },
   mounted: function mounted() {
+    var _this2 = this;
+
     Echo["private"]('chat').listen('ChatEvent', function (e) {
-      console.log(e);
+      _this2.chat.message.push(e.message);
     });
   }
 });
