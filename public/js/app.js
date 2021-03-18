@@ -55952,9 +55952,18 @@ var app = new Vue({
   },
   methods: {
     send: function send() {
+      var _this = this;
+
       if (this.message.length != 0) {
         this.chat.message.push(this.message);
-        this.message = '';
+        axios.post('/send', {
+          message: this.message
+        }).then(function (response) {
+          _this.message = '';
+          console.log(response);
+        })["catch"](function (error) {
+          console.log(error);
+        });
       }
     }
   },

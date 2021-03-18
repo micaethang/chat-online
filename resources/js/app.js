@@ -43,9 +43,18 @@ const app = new Vue({
         send() {
             if (this.message.length != 0) {
                 this.chat.message.push(this.message);
-                this.message = '';
+                axios.post('/send', {
+                    message: this.message
+                })
+                .then(response => {
+                    this.message = '';
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
             }
-        }
+        },
     },
     mounted() {
         Echo.private('chat')
